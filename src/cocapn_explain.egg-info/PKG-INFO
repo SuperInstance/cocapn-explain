@@ -1,0 +1,9 @@
+Metadata-Version: 2.4
+Name: cocapn-explain
+Version: 0.1.0
+Summary: Explainability traces for agent decisions — trace format, decision trees, human-readable summaries
+Author-email: Oracle1 <oracle1@cocapn.ai>
+License: MIT
+Project-URL: Homepage, https://github.com/cocapn/plato-provenance
+Keywords: explainability,agent,cocapn,xai,trace
+Requires-Python: >=3.8
