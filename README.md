@@ -1,5 +1,8 @@
 # cocapn-explain
 
+[![PyPI](https://img.shields.io/pypi/v/cocapn-explain)](https://pypi.org/project/cocapn-explain/) [![Python](https://img.shields.io/pypi/pyversions/cocapn-explain)](https://pypi.org/project/cocapn-explain/) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+
 Explainability traces for agent decisions.
 
 When an agent makes a decision, you should be able to trace why. Cocapn-explain provides structured decision traces that are human-readable and machine-queryable.
