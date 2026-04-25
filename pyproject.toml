@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "cocapn-explain"
-version = "0.1.0"
+version = "0.2.0"
 description = "Explainability traces for agent decisions — trace format, decision trees, human-readable summaries"
 readme = "README.md"
 license = {text = "MIT"}
