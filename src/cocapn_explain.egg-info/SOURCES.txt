@@ -1,6 +1,13 @@
+LICENSE
+README.md
 pyproject.toml
 src/cocapn_explain/__init__.py
+src/cocapn_explain/counterfactual.py
+src/cocapn_explain/decision.py
+src/cocapn_explain/explainer.py
+src/cocapn_explain/feature.py
 src/cocapn_explain/oversight.py
+src/cocapn_explain/report.py
 src/cocapn_explain/trace.py
 src/cocapn_explain.egg-info/PKG-INFO
 src/cocapn_explain.egg-info/SOURCES.txt

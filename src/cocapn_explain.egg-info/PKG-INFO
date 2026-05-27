@@ -1,9 +1,42 @@
 Metadata-Version: 2.4
 Name: cocapn-explain
-Version: 0.1.0
+Version: 0.2.0
 Summary: Explainability traces for agent decisions — trace format, decision trees, human-readable summaries
 Author-email: Oracle1 <oracle1@cocapn.ai>
 License: MIT
 Project-URL: Homepage, https://github.com/cocapn/plato-provenance
 Keywords: explainability,agent,cocapn,xai,trace
 Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Dynamic: license-file
+
+# cocapn-explain
+
+[![PyPI](https://img.shields.io/pypi/v/cocapn-explain)](https://pypi.org/project/cocapn-explain/) [![Python](https://img.shields.io/pypi/pyversions/cocapn-explain)](https://pypi.org/project/cocapn-explain/) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+
+Explainability traces for agent decisions.
+
+When an agent makes a decision, you should be able to trace why. Cocapn-explain provides structured decision traces that are human-readable and machine-queryable.
+
+## What It Does
+
+- **Trace Format** — Standardized format for decision reasoning chains
+- **Decision Trees** — Visualize the branching logic of agent decisions
+- **Oversight** — Flag decisions that diverge from expected patterns
+- **Human-Readable** — Output traces as markdown or HTML reports
+
+## Installation
+
+```bash
+pip install cocapn-explain
+```
+
+## Part of the Cocapn Fleet
+
+Provides explainability for fleet agent decisions, required for safety-critical operations.
+
+## License
+
+MIT
