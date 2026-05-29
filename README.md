@@ -66,6 +66,7 @@ queue.add_if_needed(explanation, threshold=0.7)
 - **`OversightQueue`** — Priority-sorted queue of decisions needing review
 
 ## How It Fits
+- [OpenConstruct Documentation](https://github.com/SuperInstance/openconstruct-docs) — ecosystem-wide docs and guides
 
 Explainability layer for the [SuperInstance fleet](https://github.com/SuperInstance). Every fleet agent can emit traces that `cocapn-explain` captures, analyzes, and reports.
 
