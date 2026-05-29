@@ -1,18 +1,85 @@
-# cocapn-explain
+# cocapn-explain — Agent Explainability
 
-[![PyPI](https://img.shields.io/pypi/v/cocapn-explain)](https://pypi.org/project/cocapn-explain/) [![Python](https://img.shields.io/pypi/pyversions/cocapn-explain)](https://pypi.org/project/cocapn-explain/) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+**Trace every agent decision, generate human-readable explanations, detect what needs oversight.**
 
+## What This Gives You
 
-Explainability traces for agent decisions.
+- **Decision traces** — record every step an agent takes, with inputs, outputs, and timing
+- **Feature importance** — score which inputs most influenced each decision
+- **Counterfactuals** — "what if X had been different?" exploration for any decision
+- **Oversight queue** — automatically flag high-stakes or low-confidence decisions for human review
+- **Explanation reports** — markdown or JSON reports that explain *why* an agent did what it did
 
-When an agent makes a decision, you should be able to trace why. Cocapn-explain provides structured decision traces that are human-readable and machine-queryable.
+## Quick Start
 
-## What It Does
+```bash
+pip install cocapn-explain
+```
 
-- **Trace Format** — Standardized format for decision reasoning chains
-- **Decision Trees** — Visualize the branching logic of agent decisions
-- **Oversight** — Flag decisions that diverge from expected patterns
-- **Human-Readable** — Output traces as markdown or HTML reports
+```python
+from cocapn_explain import (
+    Explainer, ExplainTrace, Decision, FeatureImportance,
+    CounterfactualGenerator, OversightQueue
+)
+
+# Record a decision trace
+trace = ExplainTrace(agent_id="agent-1")
+trace.add_step(step_type="input", description="Received query", data={"query": "deploy v2?"})
+trace.add_step(step_type="reasoning", description="Checked constraints", data={"pass": True})
+trace.add_step(step_type="output", description="Approved deployment", data={"version": "v2"})
+
+# Generate an explanation
+explainer = Explainer()
+explanation = explainer.explain_decision(
+    decision=Decision(
+        inputs=[{"query": "deploy v2?"}],
+        outputs=[{"approved": True}],
+        confidence=0.87
+    ),
+    trace=trace
+)
+print(explanation.to_markdown())
+
+# Flag decisions that need human review
+queue = OversightQueue()
+queue.add_if_needed(explanation, threshold=0.7)
+```
+
+## API Reference
+
+### Tracing
+- **`ExplainTrace`** — Step-by-step record of agent reasoning
+- **`TraceStep`** — Single step with type, description, data, timing
+- **`DecisionTrace`** — Specialized trace focused on a single decision
+
+### Decisions
+- **`Decision`** — Input/output pair with status and confidence
+- **`DecisionInput` / `DecisionOutput`** — Typed wrappers
+
+### Analysis
+- **`FeatureImportance`** — Score and rank decision inputs by influence
+- **`CounterfactualGenerator`** — Generate "what if" alternatives
+- **`Explainer`** — Produce `Explanation` objects from traces + decisions
+
+### Reporting & Oversight
+- **`ExplanationReport`** — Full report with status, explanations, metadata
+- **`OversightQueue`** — Priority-sorted queue of decisions needing review
+
+## How It Fits
+
+Explainability layer for the [SuperInstance fleet](https://github.com/SuperInstance). Every fleet agent can emit traces that `cocapn-explain` captures, analyzes, and reports.
+
+- **[cocapn](https://github.com/SuperInstance/cocapn)** — Core agent infrastructure
+- **[cocapn-health-rs](https://github.com/SuperInstance/cocapn-health-rs)** — Fleet health monitoring
+- **[guard-constraints](https://github.com/SuperInstance/guard-constraints)** — Constraint enforcement
+- **[agent-therapy](https://github.com/SuperInstance/agent-therapy)** — Behavioral health monitoring
+
+## Testing
+
+```bash
+pip install pytest
+pytest tests/
+```
 
 ## Installation
 
@@ -20,10 +87,4 @@ When an agent makes a decision, you should be able to trace why. Cocapn-explain 
 pip install cocapn-explain
 ```
 
-## Part of the Cocapn Fleet
-
-Provides explainability for fleet agent decisions, required for safety-critical operations.
-
-## License
-
-MIT
+Requires Python 3.10+. MIT license.
